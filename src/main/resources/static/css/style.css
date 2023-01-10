@@ -1,0 +1,18 @@
+body{margin: 0; padding: 0; background: #f7f7f7;}
+#page{background: white; width: 1200px; min-height: 100vh; margin: auto;}
+#pageName{font-size: 3rem; font-weight: bold; text-transform: uppercase; background: #ff382f; text-align: center; color: white}
+
+.productBox{margin: 15px 5px; padding: 10px; border-radius: 10px; display: block;}
+.productBox:hover{cursor: pointer; text-decoration: none; -webkit-box-shadow: 0px 0px 32px -4px rgba(171,162,171,1); -moz-box-shadow: 0px 0px 32px -4px rgba(171,162,171,1); box-shadow: 0px 0px 32px -4px rgba(171,162,171,1); }
+.productBox .productName{text-align: center; font-size: 1.25rem; padding: 10px 0; color: #ff382f;}
+.productBox .productPrice{text-align: center; font-size: 1.15rem; padding: 10px 0; background: #ff382f; color: white; font-weight: bold;}
+
+
+.productName{font-size: 3rem; font-weight: bold; text-transform: uppercase; margin: 15px;}
+.priceBand{font-size: 1.75rem; margin: 15px;}
+
+#bidForm{padding: 25px;}
+#bidForm .form-control{width: 70%; height: 60px;}
+#bidForm .btn{width: 28%; height: 60px; background: red; border: none; font-size: 1.5rem; font-weight: bold; text-transform: uppercase;}
+
+.section-heading{background: #f7f7f7; font-size: 2rem;}
