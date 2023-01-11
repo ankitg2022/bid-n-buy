@@ -28,7 +28,7 @@
         <h1 class="productName" th:text="${product.productName}"/>
         <p class="priceBand">Base Price : <span class="priceBand" th:text="${product.minPrice}"/></p>
         <p class="priceBand">Base Price : <span class="priceBand" th:text="${product.minPrice}"/></p>
-        <form id="bidForm" class="form-inline" action="#" th:action="@{/customer/products/bids}" method="post" th:object="${bidDTO}">
+        <form id="bidForm" class="form-inline" action="#" th:action="@{/customer/products}" method="post" th:object="${bidDTO}">
           <input type="hidden" th:field="*{productId}" class="form-control mb-2 mr-sm-2"/>
           <input type="text" th:field="*{bidPrice}" class="form-control mb-2 mr-sm-2" placeholder="Enter Bid Amount*" />
           <button type="submit" class="btn btn-primary mb-2">place bid</button>

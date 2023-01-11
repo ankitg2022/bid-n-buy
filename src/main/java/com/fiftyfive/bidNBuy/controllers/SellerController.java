@@ -2,6 +2,7 @@ package com.fiftyfive.bidNBuy.controllers;
 
 import com.fiftyfive.bidNBuy.dto.BidDTO;
 import com.fiftyfive.bidNBuy.dto.ProductDTO;
+import com.fiftyfive.bidNBuy.enums.ProductCategory;
 import com.fiftyfive.bidNBuy.security.CurrentUser;
 import com.fiftyfive.bidNBuy.security.UserPrincipal;
 import com.fiftyfive.bidNBuy.service.BidService;
@@ -27,22 +28,22 @@ public class SellerController {
     this.bidService = bidService;
   }
 
-  @GetMapping(value = "/products")
-  public String viewAllProducts(Model model) {
-    model.addAttribute("productList", productService.findAll());
+  @GetMapping(value = "/{category}")
+  public String viewAllProducts(Model model, @PathVariable ProductCategory category) {
+    model.addAttribute("productList", productService.findAllInCategory(category));
     return "seller/products";
   }
 
-  @GetMapping(value = "/products/{productId}")
+  @GetMapping(value = "/bids/{productId}")
   public String editProduct(Model model, @PathVariable Long productId) {
     model.addAttribute("product", productService.findById(productId));
     model.addAttribute("bids", bidService.findAllByProductId(productId));
-    return "seller/editProduct";
+    return "seller/bids";
   }
 
-  @PutMapping(value = "products")
-  public String updateBasePrice(Model model, @ModelAttribute ProductDTO product) {
+  @PutMapping(value = "/{category}")
+  public String updateBasePrice(Model model, @ModelAttribute ProductDTO product, @PathVariable ProductCategory category) {
     productService.setMinimumPrice(product.getProductId(), product.getMinPrice());
-    return "customer/products";
+    return "seller/"+category;
   }
 }

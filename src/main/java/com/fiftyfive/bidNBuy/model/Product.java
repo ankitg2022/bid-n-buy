@@ -1,8 +1,11 @@
 package com.fiftyfive.bidNBuy.model;
 
 import com.fiftyfive.bidNBuy.dto.ProductDTO;
+import com.fiftyfive.bidNBuy.enums.ProductCategory;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -24,6 +27,8 @@ public class Product {
   private String imgUrl;
 
   private Double minPrice;
+  @Enumerated(EnumType.STRING)
+  private ProductCategory category;
 
   @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<Bid> bids;
@@ -36,5 +41,6 @@ public class Product {
     productName = dto.getProductName();
     imgUrl = dto.getImgUrl();
     minPrice = dto.getMinPrice();
+    category = dto.getCategory();
   }
 }

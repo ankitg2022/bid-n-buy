@@ -1,6 +1,7 @@
 package com.fiftyfive.bidNBuy;
 
 import com.fiftyfive.bidNBuy.dto.ProductDTO;
+import com.fiftyfive.bidNBuy.enums.ProductCategory;
 import com.fiftyfive.bidNBuy.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -26,10 +27,10 @@ class BeanInitMethodImpl {
 
 	public void runAfterObjectCreated() {
 		System.out.println("yooooooooo......... someone called me");
-//		service.create(new ProductDTO(null, "Apple iPhone 11", "", 41000.00, null, null));
-//		service.create(new ProductDTO(null, "Apple iPhone 12", "", 42000.00, null, null));
-//		service.create(new ProductDTO(null, "Apple iPhone 13", "", 43000.00, null, null));
-//		service.create(new ProductDTO(null, "Apple iPhone 14", "", 44000.00, null, null));
-//		service.create(new ProductDTO(null, "Apple iPhone 15", "", 45000.00, null, null));
+		service.create(new ProductDTO(null, "Apple iPhone 11", "", 41000.00, ProductCategory.Mobiles, null, null));
+		service.create(new ProductDTO(null, "Apple iPhone 12", "", 42000.00, ProductCategory.Earphones, null, null));
+		service.create(new ProductDTO(null, "Apple iPhone 13", "", 43000.00, ProductCategory.Earphones, null, null));
+		service.create(new ProductDTO(null, "Apple iPhone 14", "", 44000.00, ProductCategory.Speakers, null, null));
+		service.create(new ProductDTO(null, "Apple iPhone 15", "", 45000.00, ProductCategory.Speakers, null, null));
 	}
 }

@@ -1,5 +1,6 @@
 package com.fiftyfive.bidNBuy.dto;
 
+import com.fiftyfive.bidNBuy.enums.ProductCategory;
 import com.fiftyfive.bidNBuy.model.Bid;
 import lombok.AllArgsConstructor;
 import lombok.Data;
