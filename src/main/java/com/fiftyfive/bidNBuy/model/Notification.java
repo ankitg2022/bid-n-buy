@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import java.util.Date;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +21,8 @@ public class Notification {
   private Long notificationId;
 
   private String text;
+
+  private Date creationTimestamp;
 
   private Long productId;
   @ManyToOne(fetch = FetchType.EAGER)

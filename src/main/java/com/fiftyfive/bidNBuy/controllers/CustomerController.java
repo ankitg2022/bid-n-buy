@@ -44,7 +44,7 @@ public class CustomerController {
   @PostMapping(value = "products/bids")
   public String placeBid(@CurrentUser UserPrincipal currentUser, Model model, @ModelAttribute BidDTO bidDTO) {
     bidDTO.setValid(Boolean.TRUE);
-    bidDTO.setUsername(currentUser.getUsername());
+//    bidDTO.setUsername(currentUser.getUsername());
     bidService.create(bidDTO);
     model.addAttribute("product", productService.findById(bidDTO.getProductId()));
     model.addAttribute("bids", bidService.findAllByProductId(bidDTO.getProductId()));

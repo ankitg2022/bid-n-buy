@@ -5,6 +5,7 @@ import com.fiftyfive.bidNBuy.dto.ProductDTO;
 import com.fiftyfive.bidNBuy.model.Bid;
 import com.fiftyfive.bidNBuy.repository.BidRepository;
 import com.fiftyfive.bidNBuy.repository.ProductRepository;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class BidServiceImpl implements BidService {
   @Override
   public BidDTO create(BidDTO bidDTO) {
     Bid bid = new Bid(bidDTO);
+    bid.setCreationTimestamp(new Date());
     bidRepository.save(bid);
     bidDTO.setBidId(bid.getBidId());
     return bidDTO;

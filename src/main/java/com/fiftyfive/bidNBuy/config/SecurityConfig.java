@@ -41,18 +41,12 @@ public class SecurityConfig {
     return new InMemoryUserDetailsManager(users);
   }
 
-  public SecurityFilterChain filterChain(HttpSecurity http) {
-    http
-        .formLogin(withDefaults());
-    // ...
-  }
-
   @Bean
   protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     //declares which Page(URL) will have What access type
     http.cors().disable().csrf().disable()
         .authorizeHttpRequests()
-        .requestMatchers("/login", "/accessDenied").permitAll()
+        .requestMatchers("/login", "/**").permitAll()
         .requestMatchers("/admin/**").hasAuthority("ADMIN")
         .requestMatchers("/customer/**").hasAuthority("CUSTOMER")
         .anyRequest().authenticated()

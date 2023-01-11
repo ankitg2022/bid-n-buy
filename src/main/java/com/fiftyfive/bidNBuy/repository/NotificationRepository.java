@@ -10,5 +10,5 @@ import org.springframework.data.repository.query.Param;
 public interface NotificationRepository extends JpaRepository<Notification, Long> {
 
   @Query("SELECT MODEL FROM Notification MODEL WHERE MODEL.productId IN :productIdList GROUP BY MODEL.productId")
-  List<Notification> findAllByProductIdList(@Param("productIdList") Long[] productIdList);
+  List<Notification> findAllByProductIdList(@Param("productIdList") List<Long> productIdList);
 }
