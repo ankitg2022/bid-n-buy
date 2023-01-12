@@ -1,6 +1,10 @@
 body{margin: 0; padding: 0; background: #f7f7f7;}
 #page{background: white; width: 1200px; min-height: 100vh; margin: auto;}
 
+#login{width: 100%; height: 100vh; display: flex; align-items: center;}
+#login-window{width: 600px; margin: auto; background: rgba(0, 0, 0, 0.5); padding: 40px; border-radius: 20px;}
+#login-window .form-control{height: 50px; color: red;}
+
 #navbar {background: brown;}
 #navbar .pageName{font-size: 3rem; font-weight: bold; text-transform: uppercase; background: #ff382f; text-align: center; color: white}
 
@@ -26,4 +30,15 @@ body{margin: 0; padding: 0; background: #f7f7f7;}
 #seller #topLine .adminNavbar{font-size: 1.25rem; font-weight: bold; color: white; display: flex; align-items: center;}
 #seller #topLine .adminNavbar a{color: white; padding-left: 20px; text-decoration: underline; }
 
-#seller #whiteNavbar{}
+#seller #whiteNavbar{min-height: 50px; background: white; display: flex; align-items: center; justify-content: space-between;}
+#seller #whiteNavbar a{display: block; padding: 10px 35px; font-size: 1.5rem; color: blue; text-transform: uppercase; font-weight: bolder;}
+#seller #whiteNavbar a:hover{-webkit-box-shadow: 0px 0px 32px -4px rgba(171,162,171,1); -moz-box-shadow: 0px 0px 32px -4px rgba(171,162,171,1); box-shadow: 0px 0px 32px -4px rgba(171,162,171,1); text-decoration: none;}
+#seller #content{background: white; margin: 10px auto; padding: 25px 50px;}
+#seller #content h2{text-transform: uppercase; font-weight: bold; font-size: 1.75rem; margin-bottom: 30px; text-decoration: underline; color: blue;}
+#seller #content table td, #seller #content table th{text-align: center; vertical-align: baseline;}
+
+#seller #basePriceForm{padding: 0px;}
+#seller #basePriceForm .form-control{width: 80%; height: 50px; margin-right: 5px;}
+#seller #basePriceForm .btn{width: 18%; height: 50px; background: red; border: none; font-size: 1.25rem; font-weight: bold; text-transform: uppercase;}
+
+#seller .editBtn{height: 50px; width: 50%; margin: auto; display: flex; justify-content: center; align-items: center; font-size: 1.25rem;}

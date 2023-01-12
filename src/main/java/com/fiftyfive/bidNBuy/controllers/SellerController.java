@@ -6,6 +6,7 @@ import com.fiftyfive.bidNBuy.security.CurrentUser;
 import com.fiftyfive.bidNBuy.security.UserPrincipal;
 import com.fiftyfive.bidNBuy.service.BidService;
 import com.fiftyfive.bidNBuy.service.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,15 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("seller/")
+@RequiredArgsConstructor
 public class SellerController {
 
   private final ProductService productService;
   private final BidService bidService;
-
-  public SellerController(ProductService productService, BidService bidService) {
-    this.productService = productService;
-    this.bidService = bidService;
-  }
 
   @GetMapping(value = "/products")
   public String viewAllProducts(Model model) {

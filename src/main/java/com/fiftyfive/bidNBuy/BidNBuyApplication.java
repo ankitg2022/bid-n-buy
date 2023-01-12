@@ -26,10 +26,10 @@ class BeanInitMethodImpl {
 
 	public void runAfterObjectCreated() {
 		System.out.println("yooooooooo......... someone called me");
-//		service.create(new ProductDTO(null, "Apple iPhone 11", "", 41000.00, null, null));
-//		service.create(new ProductDTO(null, "Apple iPhone 12", "", 42000.00, null, null));
-//		service.create(new ProductDTO(null, "Apple iPhone 13", "", 43000.00, null, null));
-//		service.create(new ProductDTO(null, "Apple iPhone 14", "", 44000.00, null, null));
-//		service.create(new ProductDTO(null, "Apple iPhone 15", "", 45000.00, null, null));
+		service.create(new ProductDTO(null, "Apple iPhone 11", "", 41000.00, null, null));
+		service.create(new ProductDTO(null, "Apple iPhone 12", "", 42000.00, null, null));
+		service.create(new ProductDTO(null, "Apple iPhone 13", "", 43000.00, null, null));
+		service.create(new ProductDTO(null, "Apple iPhone 14", "", 44000.00, null, null));
+		service.create(new ProductDTO(null, "Apple iPhone 15", "", 45000.00, null, null));
 	}
 }

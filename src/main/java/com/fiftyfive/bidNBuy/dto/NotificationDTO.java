@@ -14,8 +14,6 @@ public class NotificationDTO {
 
   private Long productId;
 
-  private ProductDTO product;
-
   public NotificationDTO(Notification object) {
     notificationId = object.getNotificationId();
     text = object.getText();
