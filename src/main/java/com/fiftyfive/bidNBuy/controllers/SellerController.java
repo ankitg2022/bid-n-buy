@@ -26,8 +26,8 @@ public class SellerController {
   private final BidService bidService;
 
   @GetMapping(value = "/products")
-  public String viewAllProducts(Model model) {
-    model.addAttribute("productList", productService.findAll());
+  public String viewAllProducts(Model model,@PathVariable ProductCategory category) {
+    model.addAttribute("productList", productService.findAllInCategory(category));
     return "seller/products";
   }
 
