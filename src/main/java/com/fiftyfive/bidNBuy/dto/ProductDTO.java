@@ -1,5 +1,6 @@
 package com.fiftyfive.bidNBuy.dto;
 
+import com.fiftyfive.bidNBuy.enums.ProductCategory;
 import com.fiftyfive.bidNBuy.model.Product;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,8 @@ public class ProductDTO {
 
   private Double minPrice;
 
+  private ProductCategory category;
+
   private List<BidDTO> bids;
 
   private List<NotificationDTO> notifications;
@@ -28,5 +31,6 @@ public class ProductDTO {
     productName = object.getProductName();
     imgUrl = object.getImgUrl();
     minPrice = object.getMinPrice();
+    category = object.getCategory();
   }
 }

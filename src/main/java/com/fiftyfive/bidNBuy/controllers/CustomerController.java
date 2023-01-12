@@ -1,6 +1,8 @@
 package com.fiftyfive.bidNBuy.controllers;
 
 import com.fiftyfive.bidNBuy.dto.BidDTO;
+import com.fiftyfive.bidNBuy.dto.ProductDTO;
+import com.fiftyfive.bidNBuy.enums.ProductCategory;
 import com.fiftyfive.bidNBuy.security.CurrentUser;
 import com.fiftyfive.bidNBuy.security.UserPrincipal;
 import com.fiftyfive.bidNBuy.service.BidService;
@@ -38,16 +40,11 @@ public class CustomerController {
     return "customer/productDetails";
   }
 
-  @PostMapping(value = "products/bids")
+  @PostMapping(value = "products")
   public String placeBid(@CurrentUser UserPrincipal currentUser, Model model, @ModelAttribute BidDTO bidDTO) {
     bidDTO.setValid(Boolean.TRUE);
 //    bidDTO.setUsername(currentUser.getUsername());
     bidService.create(bidDTO);
-    model.addAttribute("product", productService.findById(bidDTO.getProductId()));
-    model.addAttribute("bids", bidService.findAllByProductId(bidDTO.getProductId()));
-
-    bidDTO.setBidPrice(0D);
-    model.addAttribute("bidDTO", bidDTO);
-    return "customer/productDetails";
+    return "redirect:/customer/products/"+bidDTO.getProductId();
   }
 }

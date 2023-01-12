@@ -1,6 +1,7 @@
 package com.fiftyfive.bidNBuy.service;
 
 import com.fiftyfive.bidNBuy.dto.ProductDTO;
+import com.fiftyfive.bidNBuy.enums.ProductCategory;
 import com.fiftyfive.bidNBuy.exceptions.ResourceNotFoundException;
 import com.fiftyfive.bidNBuy.model.Product;
 import com.fiftyfive.bidNBuy.repository.ProductRepository;
@@ -23,8 +24,8 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
-  public List<ProductDTO> findAll() {
-    return productRepository.findAll().stream().map(product -> new ProductDTO(product))
+  public List<ProductDTO> findAllInCategory(ProductCategory category) {
+    return productRepository.findAllByCategory(category).stream().map(product -> new ProductDTO(product))
         .collect(Collectors.toList());
   }
 

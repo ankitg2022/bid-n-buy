@@ -13,7 +13,6 @@ body{margin: 0; padding: 0; background: #f7f7f7;}
 .productBox .productName{text-align: center; font-size: 1.25rem; padding: 10px 0; color: #ff382f;}
 .productBox .productPrice{text-align: center; font-size: 1.15rem; padding: 10px 0; background: #ff382f; color: white; font-weight: bold;}
 
-
 .productName{font-size: 3rem; font-weight: bold; text-transform: uppercase; margin: 15px;}
 .priceBand{font-size: 1.75rem; margin: 15px;}
 
