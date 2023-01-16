@@ -5,8 +5,12 @@ import com.fiftyfive.bidNBuy.model.Bid;
 import com.fiftyfive.bidNBuy.model.Notification;
 import com.fiftyfive.bidNBuy.repository.BidRepository;
 import com.fiftyfive.bidNBuy.repository.NotificationRepository;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -39,8 +43,11 @@ public class NotificationServiceImpl implements NotificationService {
 
   @Override
   public List<NotificationDTO> findAllByUsername(String username) {
-    List<Long> productIds = bidRepository.findMyProductIds(username);
-    return notificationRepository.findAllByProductIdList(productIds).stream()
-        .map(notification -> new NotificationDTO(notification)).collect(Collectors.toList());
+
+    return new ArrayList<NotificationDTO>();
+
+//    List<Long> productIds = bidRepository.findMyProductIds(username);
+//    return notificationRepository.findAllByProductIdList(productIds).stream()
+//        .map(notification -> new NotificationDTO(notification)).collect(Collectors.toList());
   }
 }

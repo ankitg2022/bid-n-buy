@@ -1,12 +1,24 @@
 body{margin: 0; padding: 0; background: #f7f7f7;}
-#page{background: white; width: 1200px; min-height: 100vh; margin: auto;}
+
+#customer{}
+#customer #top-line{background: white; padding: 15px 0}
+#customer #top-line .username{font-weight: bold; font-size: 1.5rem;}
+
+#customer #navbar{background: blue; padding: 5px 0}
+#customer #navbar .container{padding: 0}
+#customer #navbar .navbar{padding: 0.25rem;}
+#customer #navbar .navbar-nav{width: 100%; display: flex; justify-content: space-around;}
+#customer #navbar .nav-item{width: 100%; text-align: center;}
+#customer #navbar .nav-item:hover{background: red; color: white;}
+#customer #navbar .nav-link{font-size: 1.5rem; padding: 5px 15px; text-transform: uppercase; font-weight: bold;}
+#customer #navbar .nav-link:hover{color: white}
 
 #login{width: 100%; height: 100vh; display: flex; align-items: center;}
 #login-window{width: 600px; margin: auto; background: rgba(0, 0, 0, 0.5); padding: 40px; border-radius: 20px;}
 #login-window .form-control{height: 50px; color: red;}
 
-#navbar {background: brown;}
-#navbar .pageName{font-size: 3rem; font-weight: bold; text-transform: uppercase; background: #ff382f; text-align: center; color: white}
+#content{background: white; min-height: 80vh;}
+#content .row{margin: 0;}
 
 .productBox{margin: 15px 5px; padding: 10px; border-radius: 10px; display: block;}
 .productBox:hover{cursor: pointer; text-decoration: none; -webkit-box-shadow: 0px 0px 32px -4px rgba(171,162,171,1); -moz-box-shadow: 0px 0px 32px -4px rgba(171,162,171,1); box-shadow: 0px 0px 32px -4px rgba(171,162,171,1); }
@@ -17,8 +29,8 @@ body{margin: 0; padding: 0; background: #f7f7f7;}
 .priceBand{font-size: 1.75rem; margin: 15px;}
 
 #bidForm{padding: 25px;}
-#bidForm .form-control{width: 70%; height: 60px;}
-#bidForm .btn{width: 28%; height: 60px; background: red; border: none; font-size: 1.5rem; font-weight: bold; text-transform: uppercase;}
+#bidForm .form-control{height: 60px;}
+#bidForm .btn{height: 60px; background: red; border: none; font-size: 1.5rem; font-weight: bold; text-transform: uppercase;}
 
 .section-heading{background: #f7f7f7; font-size: 2rem;}
 

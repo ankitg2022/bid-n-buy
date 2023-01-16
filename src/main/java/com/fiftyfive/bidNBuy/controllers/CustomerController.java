@@ -6,6 +6,7 @@ import com.fiftyfive.bidNBuy.enums.ProductCategory;
 import com.fiftyfive.bidNBuy.security.CurrentUser;
 import com.fiftyfive.bidNBuy.security.UserPrincipal;
 import com.fiftyfive.bidNBuy.service.BidService;
+import com.fiftyfive.bidNBuy.service.NotificationService;
 import com.fiftyfive.bidNBuy.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,9 @@ public class CustomerController {
   private final ProductService productService;
   private final BidService bidService;
 
-  @GetMapping(value = "/products")
+  private final NotificationService notificationService;
+
+  @GetMapping(value = "/{category}")
   public String viewAllProducts(Model model, @PathVariable ProductCategory category) {
     model.addAttribute("productList", productService.findAllInCategory(category));
     return "customer/products";
@@ -46,5 +49,12 @@ public class CustomerController {
 //    bidDTO.setUsername(currentUser.getUsername());
     bidService.create(bidDTO);
     return "redirect:/customer/products/"+bidDTO.getProductId();
+  }
+
+
+  @GetMapping(value = "/notifications")
+  public String allNotifications(Model model) {
+    model.addAttribute("notificationList", notificationService.findAllByUsername(""));
+    return "customer/notifications";
   }
 }

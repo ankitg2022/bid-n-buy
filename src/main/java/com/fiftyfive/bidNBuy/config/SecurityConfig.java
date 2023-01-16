@@ -54,7 +54,7 @@ public class SecurityConfig {
         // Login Form Details
         .and()
         .formLogin()
-//        .defaultSuccessUrl("/welcome", true)
+        .defaultSuccessUrl("/", true)
 
         // Logout Form Details
         .and()
@@ -64,7 +64,7 @@ public class SecurityConfig {
         // Exception Details
         .and()
         .exceptionHandling()
-        .accessDeniedPage("/accessDenied")
+        .accessDeniedPage("/")
     ;
     return http.build();
   }
