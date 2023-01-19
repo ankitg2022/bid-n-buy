@@ -3,6 +3,7 @@ package com.fiftyfive.bidNBuy.service;
 import com.fiftyfive.bidNBuy.dto.BidDTO;
 import com.fiftyfive.bidNBuy.model.Bid;
 import com.fiftyfive.bidNBuy.repository.BidRepository;
+import com.fiftyfive.bidNBuy.repository.ProductRepository;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,12 +15,13 @@ import org.springframework.stereotype.Service;
 public class BidServiceImpl implements BidService {
 
   private final BidRepository bidRepository;
-
+  private final ProductRepository productRepository;
   private final IBidIngestService bidIngestService;
 
   @Override
   public List<BidDTO> findAllByProductId(Long productId) {
-    return bidRepository.findAllByProductId(productId).stream().map(bid -> new BidDTO(bid))
+    return bidRepository.findAllByProductId(productId).stream()
+        .map(bid -> new BidDTO(bid))
         .collect(Collectors.toList());
   }
 
@@ -27,6 +29,7 @@ public class BidServiceImpl implements BidService {
   public BidDTO create(BidDTO bidDTO) {
     Bid bid = new Bid(bidDTO);
     bid.setCreationTimestamp(new Date());
+    bid.setProduct(productRepository.findById(bidDTO.getProductId()).get());
     bidRepository.save(bid);
     bidDTO.setBidId(bid.getBidId());
     bidIngestService.sendBid(bid);
