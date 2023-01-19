@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 public class BidServiceImpl implements BidService {
 
   private final BidRepository bidRepository;
-  private final ProductRepository productRepository;
   private final IBidIngestService bidIngestService;
 
   @Override
@@ -29,7 +28,6 @@ public class BidServiceImpl implements BidService {
   public BidDTO create(BidDTO bidDTO) {
     Bid bid = new Bid(bidDTO);
     bid.setCreationTimestamp(new Date());
-    bid.setProduct(productRepository.findById(bidDTO.getProductId()).get());
     bidRepository.save(bid);
     bidDTO.setBidId(bid.getBidId());
     bidIngestService.sendBid(bid);

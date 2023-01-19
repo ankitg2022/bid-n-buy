@@ -40,6 +40,6 @@ public class ProductServiceImpl implements ProductService {
     productRepository.updateMinPrice(minPrice, productId);
 
     Product product = productRepository.findById(productId).get();
-    basePriceUpdateIngestService.sendBasePriceUpdate(product);
+    basePriceUpdateIngestService.sendBasePriceUpdateEvent(product);
   }
 }

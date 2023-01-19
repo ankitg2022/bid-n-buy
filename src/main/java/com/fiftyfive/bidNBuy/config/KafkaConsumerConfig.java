@@ -2,6 +2,7 @@ package com.fiftyfive.bidNBuy.config;
 
 
 import com.fiftyfive.bidNBuy.model.Bid;
+import com.fiftyfive.bidNBuy.model.Product;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -21,7 +22,7 @@ public class KafkaConsumerConfig {
   private String kafkaBootstrapServer = "localhost:9092";
 
   @Bean
-  public ConsumerFactory<String, Object> consumerFactory() {
+  public ConsumerFactory<String, Object> bidConsumerFactory() {
     Map<String, Object> props = new HashMap<>();
     props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServer);
     props.put(ConsumerConfig.GROUP_ID_CONFIG, "test-consumer-group");
@@ -33,10 +34,30 @@ public class KafkaConsumerConfig {
   }
 
   @Bean
-  public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory() {
+  public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaBidListenerContainerFactory() {
 
     ConcurrentKafkaListenerContainerFactory<String, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();
-    factory.setConsumerFactory(consumerFactory());
+    factory.setConsumerFactory(bidConsumerFactory());
+    return factory;
+  }
+
+  @Bean
+  public ConsumerFactory<String, Object> productConsumerFactory() {
+    Map<String, Object> props = new HashMap<>();
+    props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServer);
+    props.put(ConsumerConfig.GROUP_ID_CONFIG, "test-consumer-group");
+    props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+    props.put("auto.offset.reset", "earliest");
+    return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(),
+        new JsonDeserializer(Product.class));
+  }
+
+  @Bean
+  public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaProductListenerContainerFactory() {
+
+    ConcurrentKafkaListenerContainerFactory<String, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    factory.setConsumerFactory(productConsumerFactory());
     return factory;
   }
 }

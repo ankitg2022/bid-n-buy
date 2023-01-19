@@ -4,5 +4,5 @@ import com.fiftyfive.bidNBuy.model.Bid;
 import com.fiftyfive.bidNBuy.model.Product;
 
 public interface IBasePriceUpdateIngestService {
-  void sendBasePriceUpdate(Product product);
+  void sendBasePriceUpdateEvent(Product product);
 }

@@ -23,6 +23,8 @@ public class Notification {
 
   private String text;
 
+  private String username;
+
   private Date creationTimestamp;
 
   private Long productId;

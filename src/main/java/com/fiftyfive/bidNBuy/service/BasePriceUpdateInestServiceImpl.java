@@ -21,7 +21,7 @@ public class BasePriceUpdateInestServiceImpl implements IBasePriceUpdateIngestSe
 
 
   @Override
-  public void sendBasePriceUpdate(Product product) {
+  public void sendBasePriceUpdateEvent(Product product) {
     final var future = kafkaTemplate.send(topic, null, product);
 
     try {
