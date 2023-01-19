@@ -23,10 +23,10 @@ public class BidDTO {
   private ProductDTO product;
 
   public BidDTO(Bid object) {
-    bidId = object.getProductId();
+    bidId = object.getBidId();
     bidPrice = object.getBidPrice();
     username = object.getUsername();
     isValid = object.isValid();
-    productId = object.getProductId();
+    productId = object.getProduct().getProductId();
   }
 }

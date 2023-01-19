@@ -33,7 +33,7 @@ public class Bid {
   private Product product;
 
   public Bid(BidDTO object) {
-    bidId = object.getProductId();
+    bidId = object.getBidId();
     bidPrice = object.getBidPrice();
     username = object.getUsername();
     isValid = object.isValid();

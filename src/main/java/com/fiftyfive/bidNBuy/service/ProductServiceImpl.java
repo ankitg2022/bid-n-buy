@@ -7,16 +7,16 @@ import com.fiftyfive.bidNBuy.model.Product;
 import com.fiftyfive.bidNBuy.repository.ProductRepository;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
   private final ProductRepository productRepository;
 
-  public ProductServiceImpl(ProductRepository productRepository) {
-    this.productRepository = productRepository;
-  }
+  private final IBasePriceUpdateIngestService basePriceUpdateIngestService;
 
   @Override
   public void create(ProductDTO dto){
@@ -38,5 +38,8 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public void setMinimumPrice(Long productId, Double minPrice) {
     productRepository.updateMinPrice(minPrice, productId);
+
+    Product product = productRepository.findById(productId).get();
+    basePriceUpdateIngestService.sendBasePriceUpdate(product);
   }
 }
