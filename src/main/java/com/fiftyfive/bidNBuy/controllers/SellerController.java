@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("seller/")
 @RequiredArgsConstructor
-public class SellerController {
+public class  SellerController {
 
   private final ProductService productService;
   private final BidService bidService;

@@ -51,7 +51,6 @@ public class CustomerController {
     return "redirect:/customer/products/"+bidDTO.getProductId();
   }
 
-
   @GetMapping(value = "/notifications")
   public String allNotifications(Model model) {
     model.addAttribute("notificationList", notificationService.findAllByUsername(""));
