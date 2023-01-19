@@ -16,6 +16,9 @@ public interface BidRepository extends JpaRepository<Bid, Long> {
   @Query("SELECT MODEL FROM Bid MODEL WHERE MODEL.productId=:productId")
   List<Bid> findAllByProductId(@Param("productId") Long productId);
 
+  @Query("SELECT MAX(MODEL.bidPrice) FROM Bid MODEL WHERE MODEL.productId=:productId AND MODEL.isValid=:isValid ")
+  Double findMaxBidPriceForProductId(Long productId, Boolean isValid);
+
   @Modifying
   @Transactional
   @Query("UPDATE Bid MODEL SET MODEL.isValid=:isValid WHERE MODEL.bidPrice<:minBidPrice AND MODEL.productId=:productId")

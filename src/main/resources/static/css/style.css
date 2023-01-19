@@ -54,4 +54,4 @@ body{margin: 0; padding: 0; background: #f7f7f7;}
 #seller #basePriceForm .form-control{width: 80%; height: 50px; margin-right: 5px;}
 #seller #basePriceForm .btn{width: 18%; height: 50px; background: red; border: none; font-size: 1.25rem; font-weight: bold; text-transform: uppercase;}
 
-#seller .editBtn{height: 50px; width: 50%; margin: auto; display: flex; justify-content: center; align-items: center; font-size: 1.25rem;}
+#seller .editBtn{height: 40px; width: 50%; margin: auto; display: flex; justify-content: center; align-items: center; font-size: 1.25rem;}

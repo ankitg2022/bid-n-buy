@@ -22,15 +22,21 @@ public class ProductDTO {
 
   private ProductCategory category;
 
+  private Integer bidsCount;
+
+  private Double maxBid;
+
   private List<BidDTO> bids;
 
   private List<NotificationDTO> notifications;
 
-  public ProductDTO(Product object) {
+  public ProductDTO(Product object, Double maxBidAmount, Integer noOfBids) {
     productId = object.getProductId();
     productName = object.getProductName();
     imgUrl = object.getImgUrl();
     minPrice = object.getMinPrice();
     category = object.getCategory();
+    bidsCount = noOfBids;
+    maxBid = maxBidAmount;
   }
 }

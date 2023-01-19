@@ -38,9 +38,9 @@ public class  SellerController {
     return "seller/bids";
   }
 
-  @PutMapping(value = "/{category}")
-  public String updateBasePrice(Model model, @ModelAttribute ProductDTO product, @PathVariable ProductCategory category) {
+  @PostMapping(value = "/products")
+  public String updateBasePrice(Model model, @ModelAttribute ProductDTO product) {
     productService.setMinimumPrice(product.getProductId(), product.getMinPrice());
-    return "seller/"+category;
+    return "seller/"+product.getCategory();
   }
 }

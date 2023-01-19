@@ -39,15 +39,15 @@
           <th>Max Bid</th>
           <th># of Bids</th>
           <th>Base Price</th>
-          <th>Action</th>
+          <th style="width: 200px;">Action</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="dto: ${productList}">
-          <td><img src="https://m.media-amazon.com/images/I/81t6Av5DvXL._SL1500_.jpg" alt="" class="img-fluid" style="height: 100px;"/></td>
+          <td><img th:src="${dto.imgUrl}" alt="" class="img-fluid" style="height: 100px;"/></td>
           <td th:text="${dto.productName}"></td>
-          <td>57000</td>
-          <td>4</td>
+          <td th:text="${dto.maxBid}"></td>
+          <td th:text="${dto.bidsCount}"></td>
           <td th:text="${dto.minPrice}"></td>
           <td>
             <a th:href="@{/seller/bids/{productId}(productId=${dto.productId})}" class="btn btn-primary editBtn">Edit</a>
