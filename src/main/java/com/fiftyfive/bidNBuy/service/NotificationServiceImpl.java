@@ -4,11 +4,11 @@ import com.fiftyfive.bidNBuy.dto.NotificationDTO;
 import com.fiftyfive.bidNBuy.model.Bid;
 import com.fiftyfive.bidNBuy.model.Notification;
 import com.fiftyfive.bidNBuy.model.Product;
-import com.fiftyfive.bidNBuy.repository.BidRepository;
 import com.fiftyfive.bidNBuy.repository.NotificationRepository;
-import java.util.ArrayList;
+import com.fiftyfive.bidNBuy.repository.ProductRepository;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -18,19 +18,21 @@ import org.springframework.stereotype.Service;
 public class NotificationServiceImpl implements NotificationService {
 
   private final NotificationRepository notificationRepository;
-  private final BidRepository bidRepository;
+  private final ProductRepository productRepository;
 
   @Override
-  @KafkaListener(topics = "bid-events")
+  @KafkaListener(topics = "bid-events", containerFactory = "kafkaBidListenerContainerFactory", groupId = "")
   public void createBidNotification(Bid bid) {
 
     Notification notification = new Notification();
     Date date = new Date();
+    Product product = productRepository.findById(bid.getProductId()).get();
     notification.setText(
-        "A bid for product id : " + bid.getProduct().getProductId() + " name : " + bid.getProduct()
-            .getProductName() + " was created at " + date);
+        "A bid for product " + bid.getProductId() + " was created by user" + bid.getUsername()
+            + " at " + date);
     notification.setCreationTimestamp(date);
-    notification.setProductId(bid.getProduct().getProductId());
+    notification.setProductId(bid.getProductId());
+    notification.setUsername(bid.getUsername());
     notificationRepository.save(notification);
     System.out.println(
         "Bid notification saved successfully with bid : " + bid + " and notification : "
@@ -38,7 +40,7 @@ public class NotificationServiceImpl implements NotificationService {
   }
 
   @Override
-  @KafkaListener(topics = "product-events")
+  @KafkaListener(topics = "product-events", containerFactory = "kafkaProductListenerContainerFactory", groupId = "")
   public void createBasePriceUpdationNotification(Product product) {
     Notification notification = new Notification();
     Date date = new Date();
@@ -55,10 +57,7 @@ public class NotificationServiceImpl implements NotificationService {
   @Override
   public List<NotificationDTO> findAllByUsername(String username) {
 
-    return new ArrayList<NotificationDTO>();
-
-//    List<Long> productIds = bidRepository.findMyProductIds(username);
-//    return notificationRepository.findAllByProductIdList(productIds).stream()
-//        .map(notification -> new NotificationDTO(notification)).collect(Collectors.toList());
+    return notificationRepository.findAll().stream()
+        .map(notification -> new NotificationDTO(notification)).collect(Collectors.toList());
   }
 }
