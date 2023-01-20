@@ -34,13 +34,9 @@ public class SecurityConfig {
         .requestMatchers("/css/**", "/images/**", "/" ).permitAll()
         .anyRequest().authenticated()
         .and()
-<<<<<<< HEAD
         .formLogin().defaultSuccessUrl("/defaultPage", true)
         .and()
         .logout().logoutSuccessUrl("/");
-=======
-        .formLogin().defaultSuccessUrl("/defaultPage", true);
->>>>>>> ba1f73c9d9b2a47a098b9c22d75d579b0ed3fc32
 
     return httpSecurity.build();
   }
