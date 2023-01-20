@@ -2,15 +2,11 @@ package com.fiftyfive.bidNBuy.model;
 
 import com.fiftyfive.bidNBuy.dto.ProductDTO;
 import com.fiftyfive.bidNBuy.enums.ProductCategory;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 public class Product {
+
   @Id
   @GeneratedValue
   private Long productId;
@@ -29,12 +26,6 @@ public class Product {
   private Double minPrice;
   @Enumerated(EnumType.STRING)
   private ProductCategory category;
-
-  @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private List<Bid> bids;
-
-  @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private List<Notification> notifications;
 
   public Product(ProductDTO dto) {
     productId = dto.getProductId();

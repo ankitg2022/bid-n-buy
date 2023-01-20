@@ -30,8 +30,8 @@ public class NotificationServiceImpl implements NotificationService {
     Notification notification = new Notification();
     Date date = new Date();
     Product product = productRepository.findById(bid.getProductId()).get();
-    notification.setText("A bid for " + product.getProductName() + " of amount " + bid.getBidPrice()
-        + " was created by " + bid.getUsername());
+    notification.setText(
+        "A bid for " + product.getProductName() + " of amount " + bid.getBidPrice());
     notification.setCreationTimestamp(date);
     notification.setProductId(bid.getProductId());
     notification.setUsername(bid.getUsername());
@@ -55,6 +55,7 @@ public class NotificationServiceImpl implements NotificationService {
   @Override
   public List<NotificationDTO> findAllByUsername(String username) {
     List<Long> productIds = bidRepository.findMyProductIds(username);
-    return notificationRepository.findAllByProductIdList(productIds).stream().map(notification -> new NotificationDTO(notification)).collect(Collectors.toList());
+    return notificationRepository.findAllByProductIdList(productIds).stream()
+        .map(notification -> new NotificationDTO(notification)).collect(Collectors.toList());
   }
 }

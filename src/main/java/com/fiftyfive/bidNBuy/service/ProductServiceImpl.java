@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
   private final IBasePriceUpdateIngestService basePriceUpdateIngestService;
 
   @Override
-  public void create(ProductDTO dto){
+  public void create(ProductDTO dto) {
     productRepository.save(new Product(dto));
   }
 
@@ -30,9 +30,10 @@ public class ProductServiceImpl implements ProductService {
   public List<ProductDTO> findAllInCategory(ProductCategory category) {
     Double maxBid;
     List<ProductDTO> productDTOList = new ArrayList<ProductDTO>();
-    for(Product product : productRepository.findAllByCategory(category)){
+    for (Product product : productRepository.findAllByCategory(category)) {
       maxBid = bidRepository.findMaxBidPriceForProductId(product.getProductId(), Boolean.TRUE);
-      productDTOList.add(new ProductDTO(product, maxBid, product.getBids().size()));
+      productDTOList.add(new ProductDTO(product, maxBid,
+          bidRepository.findAllByProductId(product.getProductId()).size()));
     }
     return productDTOList;
   }
@@ -40,7 +41,9 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public ProductDTO findById(Long productId) {
     return new ProductDTO(
-        productRepository.findById(productId).orElseThrow(() -> new ResourceNotFoundException("Product", String.valueOf(productId))), 0.0, 0);
+        productRepository.findById(productId)
+            .orElseThrow(() -> new ResourceNotFoundException("Product", String.valueOf(productId))),
+        0.0, 0);
   }
 
   @Override
