@@ -51,7 +51,7 @@
           <img th:src="${product.imgUrl}" alt="" class="img-fluid" />
         </div>
         <div class="col-8">
-          <h1 class="productName" th:text="${product.productName}"/>
+          <h3 class="productName" th:text="${product.productName}"/>
           <p class="priceBand">Base Price : <span class="priceBand" th:text="${product.minPrice}"/></p>
           <form id="bidForm" action="#" th:action="@{/customer/products}" method="post" th:object="${bidDTO}">
             <input type="hidden" th:field="*{productId}" class="form-control mb-2 mr-sm-2"/>

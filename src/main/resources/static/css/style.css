@@ -1,6 +1,6 @@
 body{margin: 0; padding: 0; background: #f7f7f7;}
 
-.imgBox{height: 310px;}
+.imgBox{max-height: 310px;}
 
 #customer #top-line{background: white; padding: 15px 0}
 #customer #top-line .username{font-weight: bold; font-size: 1.5rem;}
