@@ -4,6 +4,7 @@ import com.fiftyfive.bidNBuy.dto.NotificationDTO;
 import com.fiftyfive.bidNBuy.model.Bid;
 import com.fiftyfive.bidNBuy.model.Notification;
 import com.fiftyfive.bidNBuy.model.Product;
+import com.fiftyfive.bidNBuy.repository.BidRepository;
 import com.fiftyfive.bidNBuy.repository.NotificationRepository;
 import com.fiftyfive.bidNBuy.repository.ProductRepository;
 import java.util.Date;
@@ -19,6 +20,8 @@ public class NotificationServiceImpl implements NotificationService {
 
   private final NotificationRepository notificationRepository;
   private final ProductRepository productRepository;
+
+  private final BidRepository bidRepository;
 
   @Override
   @KafkaListener(topics = "bid-events", containerFactory = "kafkaBidListenerContainerFactory", groupId = "")
@@ -51,7 +54,7 @@ public class NotificationServiceImpl implements NotificationService {
 
   @Override
   public List<NotificationDTO> findAllByUsername(String username) {
-    return notificationRepository.findAll().stream()
-        .map(notification -> new NotificationDTO(notification)).collect(Collectors.toList());
+    List<Long> productIds = bidRepository.findMyProductIds(username);
+    return notificationRepository.findAllByProductIdList(productIds).stream().map(notification -> new NotificationDTO(notification)).collect(Collectors.toList());
   }
 }
