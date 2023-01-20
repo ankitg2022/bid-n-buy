@@ -20,7 +20,7 @@
         <div class="col-6"><img th:src="@{/images/logo.jpg}" alt="" class="img-fluid" style="max-height: 80px;" /></div>
         <div class="col-6 username">
           <div class="row">
-            <div class="col-12 d-flex align-items-center justify-content-end"><a th:href="@{/customer/notifications}">Welcome, username</a></div>
+            <div class="col-12 d-flex align-items-center justify-content-end"><a th:href="@{/customer/notifications}">Welcome, <span th:text="${username}"></span></a></div>
             <div class="col-12 d-flex align-items-center justify-content-end"><a th:href="@{/logout}">Logout</a></div>
           </div>
         </div>
@@ -50,7 +50,7 @@
     <div class="row">
       <div class="col-6 col-md-4" th:each="dto: ${productList}">
         <a th:href="@{/customer/products/{productId}(productId=${dto.productId})}" class="productBox">
-          <div class="imgBox"><img src="https://m.media-amazon.com/images/I/81t6Av5DvXL._SL1500_.jpg" alt="" class="img-fluid" /></div>
+          <div class="imgBox"><img th:src="${dto.imgUrl}" alt="" class="img-fluid" /></div>
           <div class="productName" th:text="${dto.productName}" />
           <div class="productPrice">Base Price : <span th:text="${dto.minPrice}" /></div>
         </a>

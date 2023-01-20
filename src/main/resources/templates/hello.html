@@ -12,21 +12,7 @@
 </head>
 <body>
   <div id="login" class="container-fluid" style="background-image: url('images/bg.jpg'); background-size: cover; background-position: bottom;">
-    <div id="login-window">
-
-      <form th:action="@{/login}">
-        <div class="form-group">
-          <label class="d-none" for="email">Username:</label>
-          <input type="text" class="form-control" placeholder="Username" id="email">
-        </div>
-        <div class="form-group">
-          <label class="d-none" for="pwd">Password:</label>
-          <input type="password" class="form-control" placeholder="Password" id="pwd">
-        </div>
-        <button type="submit" class="btn btn-primary btn-block" style="height: 60px; font-size: 2rem; font-weight: bolder; text-transform: uppercase; ">Login</button>
-      </form>
-
-    </div>
+    <h1>Hello <span th:text="${username}" ></span></h1>
   </div>
 </body>
 </html>

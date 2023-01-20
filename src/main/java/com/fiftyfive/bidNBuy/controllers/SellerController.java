@@ -27,6 +27,7 @@ public class  SellerController {
 
   @GetMapping(value = "/{category}")
   public String viewAllProducts(Model model,@PathVariable ProductCategory category) {
+    model.addAttribute("pageName", category);
     model.addAttribute("productList", productService.findAllInCategory(category));
     return "seller/products";
   }
@@ -41,6 +42,6 @@ public class  SellerController {
   @PostMapping(value = "/products")
   public String updateBasePrice(Model model, @ModelAttribute ProductDTO product) {
     productService.setMinimumPrice(product.getProductId(), product.getMinPrice());
-    return "seller/"+product.getCategory();
+    return "redirect:/seller/"+product.getCategory();
   }
 }
