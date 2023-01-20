@@ -48,7 +48,7 @@
     <div id="content" class="container">
       <div class="row py-4">
         <div class="col-4">
-          <img src="https://m.media-amazon.com/images/I/81t6Av5DvXL._SL1500_.jpg" alt="" class="img-fluid" />
+          <img th:src="${product.imgUrl}" alt="" class="img-fluid" />
         </div>
         <div class="col-8">
           <h1 class="productName" th:text="${product.productName}"/>
@@ -69,11 +69,13 @@
             <th>Username</th>
             <th>Bid Time</th>
             <th>Bid Amount</th>
+            <th>Is Valid</th>
           </tr>
           </thead>
           <tbody>
           <tr th:each="dto: ${bids}">
             <td th:text="${dto.username}"></td>
+            <td th:text="${#dates.format(dto.creationTimestamp, 'dd-MM-yyyy HH:mm')}"></td>
             <td th:text="${dto.bidPrice}"></td>
             <td th:text="${dto.isValid}"></td>
           </tr>

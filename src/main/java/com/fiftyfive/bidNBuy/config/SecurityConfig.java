@@ -34,7 +34,9 @@ public class SecurityConfig {
         .requestMatchers("/css/**", "/images/**", "/" ).permitAll()
         .anyRequest().authenticated()
         .and()
-        .formLogin().loginPage("/").defaultSuccessUrl("/defaultPage", true);
+        .formLogin().defaultSuccessUrl("/defaultPage", true)
+        .and()
+        .logout().logoutSuccessUrl("/");
 
     return httpSecurity.build();
   }

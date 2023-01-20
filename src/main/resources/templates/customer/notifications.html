@@ -45,35 +45,13 @@
     <div id="pageName" class="container" style=" background: #0303b5;margin: auto; text-align: center; font-size: 2rem; text-transform: uppercase; font-weight: bolder; color: white; padding: 10px 0; border: 6px double white;">Notifications</div>
     <div id="content" class="container pt-3">
 
-      <div class="row notification-box my-3" style="">
+      <div class="row notification-box my-3" th:each="dto: ${notificationList}">
         <div class="col-1 px-2 pt-3 rounded-lg" style="background: #e5e5e5;" ><img src="https://cdn.pixabay.com/photo/2012/04/18/00/07/silhouette-of-a-man-36181_1280.png" class="img-fluid" /></div>
         <div class="col-11">
           <div class="row">
-            <div class="col-12 font-weight-bold">Ankit Gupta</div>
-            <div class="col-12 py-1" style="color: #e5e5e5;">@ 11.15 PM</div>
-            <div class="col-12 py-1">placed a bid of Rs. 35,000 for IPhone 11 PRO</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row notification-box my-3" style="">
-        <div class="col-1 px-2 pt-3 rounded-lg" style="background: #e5e5e5;" ><img src="https://cdn.pixabay.com/photo/2012/04/18/00/07/silhouette-of-a-man-36181_1280.png" class="img-fluid" /></div>
-        <div class="col-11">
-          <div class="row">
-            <div class="col-12 font-weight-bold">Ankit Gupta</div>
-            <div class="col-12 py-1" style="color: #e5e5e5;">@ 11.15 PM</div>
-            <div class="col-12 py-1">placed a bid of Rs. 35,000 for IPhone 11 PRO</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row notification-box my-3" style="">
-        <div class="col-1 px-2 pt-3 rounded-lg" style="background: #e5e5e5;" ><img src="https://cdn.pixabay.com/photo/2012/04/18/00/07/silhouette-of-a-man-36181_1280.png" class="img-fluid" /></div>
-        <div class="col-11">
-          <div class="row">
-            <div class="col-12 font-weight-bold">Ankit Gupta</div>
-            <div class="col-12 py-1" style="color: #e5e5e5;">@ 11.15 PM</div>
-            <div class="col-12 py-1">placed a bid of Rs. 35,000 for IPhone 11 PRO</div>
+            <div class="col-12 font-weight-bold" th:text="${dto.username}"></div>
+            <div class="col-12 py-1" style="color: #a99e9e;" th:text="${#dates.format(dto.creationTimestamp, 'dd-MM-yyyy HH:mm')}"></div>
+            <div class="col-12 py-1" th:text="${dto.text}"></div>
           </div>
         </div>
       </div>

@@ -56,7 +56,6 @@ public class NotificationServiceImpl implements NotificationService {
 
   @Override
   public List<NotificationDTO> findAllByUsername(String username) {
-
     return notificationRepository.findAll().stream()
         .map(notification -> new NotificationDTO(notification)).collect(Collectors.toList());
   }

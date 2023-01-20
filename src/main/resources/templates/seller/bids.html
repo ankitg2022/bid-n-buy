@@ -48,16 +48,14 @@
         <th>Bid Price</th>
         <th>Bid Time</th>
         <th>Is Active</th>
-        <th>Action</th>
       </tr>
       </thead>
       <tbody>
       <tr th:each="dto: ${bids}">
         <td th:text="${dto.username}"></td>
         <td th:text="${dto.bidPrice}"></td>
-        <td th:text="${dto.creationTimestamp}"></td>
+        <td th:text="${#dates.format(dto.creationTimestamp, 'dd-MM-yyyy HH:mm')}"></td>
         <td th:text="${dto.isValid}"></td>
-        <td><a href="" class="btn btn-danger">Deactivate</a></td>
       </tr>
       </tbody>
     </table>
