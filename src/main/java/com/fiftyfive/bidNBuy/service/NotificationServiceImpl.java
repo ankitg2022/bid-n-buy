@@ -27,16 +27,12 @@ public class NotificationServiceImpl implements NotificationService {
     Notification notification = new Notification();
     Date date = new Date();
     Product product = productRepository.findById(bid.getProductId()).get();
-    notification.setText(
-        "A bid for product " + bid.getProductId() + " was created by user" + bid.getUsername()
-            + " at " + date);
+    notification.setText("A bid for " + product.getProductName() + " of amount " + bid.getBidPrice()
+        + " was created by " + bid.getUsername());
     notification.setCreationTimestamp(date);
     notification.setProductId(bid.getProductId());
     notification.setUsername(bid.getUsername());
     notificationRepository.save(notification);
-    System.out.println(
-        "Bid notification saved successfully with bid : " + bid + " and notification : "
-            + notification);
   }
 
   @Override
@@ -44,14 +40,13 @@ public class NotificationServiceImpl implements NotificationService {
   public void createBasePriceUpdationNotification(Product product) {
     Notification notification = new Notification();
     Date date = new Date();
-    notification.setText("Base price for product id : " + product.getProductId() + " with name "
-        + product.getProductName() + " has been changed by the seller at " + date);
+    notification.setText(
+        "Base price for  " + product.getProductName() + " has been changed by the seller to "
+            + product.getMinPrice());
     notification.setCreationTimestamp(date);
     notification.setProductId(product.getProductId());
     notificationRepository.save(notification);
-    System.out.println(
-        "Base price for product " + product.getProductId() + " has been changed by the seller at "
-            + date + " and notification has been saved successfully: " + notification);
+    System.out.println("Product" + product);
   }
 
   @Override
