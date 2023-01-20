@@ -42,6 +42,7 @@ public class  SellerController {
   @PostMapping(value = "/products")
   public String updateBasePrice(Model model, @ModelAttribute ProductDTO product) {
     productService.setMinimumPrice(product.getProductId(), product.getMinPrice());
+    bidService.invalidateBidLessThanMinPriceForProduct(product.getProductId(), product.getMinPrice());
     return "redirect:/seller/"+product.getCategory();
   }
 }
