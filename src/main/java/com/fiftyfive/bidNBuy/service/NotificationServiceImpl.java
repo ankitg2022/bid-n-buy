@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.springframework.kafka.annotation.KafkaListener;
+//import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -24,32 +24,32 @@ public class NotificationServiceImpl implements NotificationService {
   private final BidRepository bidRepository;
 
   @Override
-  @KafkaListener(topics = "bid-events", containerFactory = "kafkaBidListenerContainerFactory", groupId = "")
+//  @KafkaListener(topics = "bid-events", containerFactory = "kafkaBidListenerContainerFactory", groupId = "")
   public void createBidNotification(Bid bid) {
 
-    Notification notification = new Notification();
-    Date date = new Date();
-    Product product = productRepository.findById(bid.getProductId()).get();
-    notification.setText(
-        "A bid for " + product.getProductName() + " of amount " + bid.getBidPrice());
-    notification.setCreationTimestamp(date);
-    notification.setProductId(bid.getProductId());
-    notification.setUsername(bid.getUsername());
-    notificationRepository.save(notification);
+//    Notification notification = new Notification();
+//    Date date = new Date();
+//    Product product = productRepository.findById(bid.getProductId()).get();
+//    notification.setText(
+//        "A bid for " + product.getProductName() + " of amount " + bid.getBidPrice());
+//    notification.setCreationTimestamp(date);
+//    notification.setProductId(bid.getProductId());
+//    notification.setUsername(bid.getUsername());
+//    notificationRepository.save(notification);
   }
 
   @Override
-  @KafkaListener(topics = "product-events", containerFactory = "kafkaProductListenerContainerFactory", groupId = "")
+//  @KafkaListener(topics = "product-events", containerFactory = "kafkaProductListenerContainerFactory", groupId = "")
   public void createBasePriceUpdationNotification(Product product) {
-    Notification notification = new Notification();
-    Date date = new Date();
-    notification.setText(
-        "Base price for  " + product.getProductName() + " has been changed by the seller to "
-            + product.getMinPrice());
-    notification.setCreationTimestamp(date);
-    notification.setProductId(product.getProductId());
-    notificationRepository.save(notification);
-    System.out.println("Product" + product);
+//    Notification notification = new Notification();
+//    Date date = new Date();
+//    notification.setText(
+//        "Base price for  " + product.getProductName() + " has been changed by the seller to "
+//            + product.getMinPrice());
+//    notification.setCreationTimestamp(date);
+//    notification.setProductId(product.getProductId());
+//    notificationRepository.save(notification);
+//    System.out.println("Product" + product);
   }
 
   @Override
